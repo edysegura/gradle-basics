@@ -1,0 +1,22 @@
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+version = '1.0'
+mainClassName = 'Todo'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile 'org.codehaus.groovy:groovy-all:2.4.4'
+}
+
+task groovyJar(type: Jar, dependsOn:[':compileJava',':compileGroovy']) {
+    from files(sourceSets.main.output.classesDir)
+    from configurations.runtime.asFileTree.files.collect { zipTree(it) }
+
+    manifest {
+        attributes 'Main-Class': 'Todo'
+    }
+}

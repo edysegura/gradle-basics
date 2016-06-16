@@ -1,0 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+version = '1.0'
+mainClassName = 'Todo'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Todo'
+    }
+}
